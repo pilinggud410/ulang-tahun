@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Selamat Ulang Tahun - Kejutan Spesial Untukmu!">
+    <title>🎂 Selamat Ulang Tahun! 🎂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-bg"></div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="audio/Music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Music Player -->
+    <div id="music-player" class="hidden">
+        <button id="music-toggle" type="button" title="Play/Pause">
+            <div id="music-waves">
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+            </div>
+        </button>
+        <input type="range" id="music-volume" min="0" max="100" value="70" title="Volume">
+    </div>
+
+    <!-- Stage 0: Password / PIN -->
+    <div id="password-stage" class="stage active">
+        <div id="password-container">
+            <div class="lock-icon">🔒</div>
+            <h2 class="password-title">Masukkan Kode Rahasia</h2>
+            <p class="password-subtitle">Bulan-Hari</p>
+            <div id="pin-dots">
+                <div class="pin-dot" data-index="0"></div>
+                <div class="pin-dot" data-index="1"></div>
+                <div class="pin-dot" data-index="2"></div>
+                <div class="pin-dot" data-index="3"></div>
+            </div>
+            <div id="pin-error"></div>
+            <div id="numpad">
+                <button class="numpad-btn" data-num="1">1</button>
+                <button class="numpad-btn" data-num="2">2</button>
+                <button class="numpad-btn" data-num="3">3</button>
+                <button class="numpad-btn" data-num="4">4</button>
+                <button class="numpad-btn" data-num="5">5</button>
+                <button class="numpad-btn" data-num="6">6</button>
+                <button class="numpad-btn" data-num="7">7</button>
+                <button class="numpad-btn" data-num="8">8</button>
+                <button class="numpad-btn" data-num="9">9</button>
+                <button class="numpad-btn empty"></button>
+                <button class="numpad-btn" data-num="0">0</button>
+                <button class="numpad-btn delete-btn" data-num="del">⌫</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 1: Gift Box -->
+    <div id="gift-stage" class="stage">
+        <div id="gift-glow"></div>
+        <div id="gift-container">
+            <div id="gift-hint">✨ Tap untuk membuka ✨</div>
+            <div id="gift-box">
+                <div id="gift-lid">
+                    <div class="lid-top">
+                        <div class="ribbon-bow">
+                            <div class="bow-loop left"></div>
+                            <div class="bow-loop right"></div>
+                            <div class="bow-knot"></div>
+                            <div class="bow-tail left-tail"></div>
+                            <div class="bow-tail right-tail"></div>
+                        </div>
+                    </div>
+                    <div class="lid-front"></div>
+                    <div class="ribbon-vertical-lid"></div>
+                </div>
+                <div id="gift-body">
+                    <div class="box-front"></div>
+                    <div class="ribbon-vertical-body"></div>
+                    <div class="box-pattern"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 2: Flower Explosion -->
+    <div id="flower-stage" class="stage">
+        <div id="flower-container"></div>
+    </div>
+
+    <!-- Swipe Hint (above flower stage) -->
+    <div id="flower-swipe-hint">
+        <span class="swipe-arrow">👈</span>
+        <span>Geser untuk lanjut</span>
+    </div>
+
+    <!-- Stage 3: Birthday Message (sits behind flowers) -->
+    <div id="message-stage" class="stage">
+        <div id="message-bg-decor"></div>
+
+        <!-- Floating polaroids on the sides -->
+        <div id="polaroid-gallery">
+            <div class="polaroid side-left pos-1" style="--rotate: -8deg; --delay: 0.5s; --float-duration: 5.5s;">
+                <div class="polaroid-photo">
+                    <img src="images/photo1.jpg" alt="Photo 1">
+                </div>
+                <div class="polaroid-caption">💕</div>
+            </div>
+            <div class="polaroid side-left pos-2" style="--rotate: 6deg; --delay: 0.8s; --float-duration: 6.5s;">
+                <div class="polaroid-photo">
+                    <img src="images/photo2.jpg" alt="Photo 2">
+                </div>
+                <div class="polaroid-caption">✨</div>
+            </div>
+            <div class="polaroid side-left pos-3" style="--rotate: -5deg; --delay: 1.1s; --float-duration: 5.8s;">
+                <div class="polaroid-photo">
+                    <img src="images/photo3.jpg" alt="Photo 3">
+                </div>
+                <div class="polaroid-caption">🥰</div>
+            </div>
+            <div class="polaroid side-right pos-1" style="--rotate: 7deg; --delay: 0.65s; --float-duration: 6s;">
+                <div class="polaroid-photo">
+                    <img src="images/photo4.jpg" alt="Photo 4">
+                </div>
+                <div class="polaroid-caption">💖</div>
+            </div>
+            <div class="polaroid side-right pos-2" style="--rotate: -6deg; --delay: 0.95s; --float-duration: 6.2s;">
+                <div class="polaroid-photo">
+                    <img src="images/photo5.jpg" alt="Photo 5">
+                </div>
+                <div class="polaroid-caption">🌟</div>
+            </div>
+        </div>
+
+        <div id="message-container">
+            <div id="birthday-text">
+                <span class="line1 eyebrow-text"> Your Special Day</span>
+                <span class="line2 message-title">Selamat</span>
+                <span class="line3 message-title">Ulang Tahun Sayang!</span>
+                <span class="line4 message-subtitle">Created with love, just for you </span>
+                <span class="line5 message-note-wrap">
+                    <button id="read-letter-btn" type="button">
+                        <span class="heart-dot">♥</span> Baca Suratku <span class="heart-dot">♥</span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 4: Letter Page -->
+    <div id="letter-stage" class="stage">
+        <div id="letter-page">
+            <button id="letter-back-btn" type="button">← Kembali</button>
+            <h1 id="letter-heading">Happy Birthday</h1>
+            <div id="letter-box">
+                <div id="letter-typed"></div><span id="letter-cursor">|</span>
+            </div>
+            <button id="go-stamps-btn" type="button">✨ Masih Ada Lagi →</button>
+        </div>
+    </div>
+
+    <!-- Stage 4.5: More Waiting (stamp cards) -->
+    <div id="stamps-stage" class="stage">
+        <button id="stamps-back-btn" type="button">← Kembali</button>
+        <div id="stamps-page">
+            <div class="stamps-corner tl">✦</div>
+            <div class="stamps-corner tr">✦</div>
+            <div class="stamps-corner bl">✦</div>
+            <div class="stamps-corner br">✦</div>
+
+            <h1 id="stamps-heading">There's still more</h1>
+            <p id="stamps-subheading">Waiting for you.</p>
+
+            <div id="stamps-row">
+                <button class="stamp-card" id="stamp-heart" type="button">
+                    <img class="stamp-icon" src="images/ikon_love.png" alt="Love">
+                </button>
+                <button class="stamp-card" id="stamp-flower" type="button">
+                    <img class="stamp-icon" src="images/ikon_bunga.png" alt="Bunga">
+                </button>
+                <button class="stamp-card" id="stamp-music" type="button">
+                    <img class="stamp-icon" src="images/ikon_musik.png" alt="Musik">
+                </button>
+            </div>
+
+            <p id="stamps-hint">Open them one by one, okay?</p>
+
+            <button id="go-finale-btn" type="button">✨ One More Thing... ✨</button>
+        </div>
+    </div>
+
+    <!-- Stage 5: Our Memories -->
+    <div id="memories-stage" class="stage">
+        <button id="memories-back-btn" type="button">← Kembali</button>
+
+        <div id="memories-scroll-wrap">
+            <!-- Title -->
+            <div id="memories-text-overlay">
+                <p class="mem-title">Our Memories</p>
+                <p class="mem-sub">Walaupun bikin memoriesnya<br>masih di Roblox 🎮💕</p>
+            </div>
+
+            <!-- Photos area -->
+            <div id="memories-scatter">
+                <!-- Row 1 (4 photos) -->
+                <div class="mem-polaroid" style="--x: 2%; --y: 0; --rot: -6deg; --delay: 0.1s">
+                    <div class="mem-img"><img src="images/memory1.png" alt=""></div>
+                </div>
+                <div class="mem-polaroid" style="--x: 26%; --y: 0; --rot: 4deg; --delay: 0.25s">
+                    <div class="mem-img"><img src="images/memory2.png" alt=""></div>
+                </div>
+                <div class="mem-polaroid" style="--x: 50%; --y: 0; --rot: -3deg; --delay: 0.4s">
+                    <div class="mem-img"><img src="images/memory3.jpg" alt=""></div>
+                </div>
+                <div class="mem-polaroid" style="--x: 74%; --y: 0; --rot: 5deg; --delay: 0.55s">
+                    <div class="mem-img"><img src="images/memory7.png" alt="" style="object-position: top"></div>
+                </div>
+
+                <!-- Row 2 (4 photos) -->
+                <div class="mem-polaroid row2" style="--x: 2%; --y: 0; --rot: 5deg; --delay: 0.7s">
+                    <div class="mem-img"><img src="images/memory8.png" alt=""></div>
+                </div>
+                <div class="mem-polaroid row2" style="--x: 26%; --y: 0; --rot: -5deg; --delay: 0.85s">
+                    <div class="mem-img"><img src="images/memory4.png" alt=""></div>
+                </div>
+                <div class="mem-polaroid row2" style="--x: 50%; --y: 0; --rot: 4deg; --delay: 1.0s">
+                    <div class="mem-img"><img src="images/memory5.png" alt=""></div>
+                </div>
+                <div class="mem-polaroid row2" style="--x: 74%; --y: 0; --rot: -4deg; --delay: 1.15s">
+                    <div class="mem-img"><img src="images/memory9.jpg" alt=""></div>
+                </div>
+            </div>
+
+            <!-- Text below photos -->
+            <div id="memories-message">
+                <p>Every photo tells a story, every smile holds a memory, and every moment reminds me how lucky I am to have you.</p>
+                <p>These may just be pictures, but to me, they're little pieces of happiness that I'll always treasure.</p>
+                <p>Even though we're still creating most of our memories online, every call, every message, every laugh, and every moment we share means the world to me.</p>
+                <p>I can't wait for the day we can make even more beautiful memories together in person. 💕</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 6: The Song -->
+    <div id="song-stage" class="stage">
+        <button id="song-back-btn" type="button">← Kembali</button>
+        <div id="song-page">
+            <h1 id="song-heading">This is the song that reminds me of you</h1>
+
+            <div id="song-content-row">
+                <div id="song-video-col">
+                    <div id="song-embed-wrap">
+                        <iframe
+                            src="https://www.youtube.com/embed/tVj5jUW4LvI"
+                            title="Lagu untukmu"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div id="song-wishes">
+                    <h2 class="wishes-title">Birthday Wishes 💕</h2>
+                    <p>I wish this year brings you endless happiness, good health, success, and all the love you truly deserve. Even though we're far apart, please know that you're always in my heart and never far from my thoughts.</p>
+                    <p>Thank you for being such an incredible part of my life. Your love, kindness, and support mean everything to me. I'm so grateful to have you, and I hope today is filled with beautiful moments that make you smile.</p>
+                    <p>I wish I could be there to celebrate with you, give you the biggest hug, and tell you in person how much I love you. But until we can finally be together, I'll keep loving you from every mile between us.</p>
+                    <p>Happy Birthday, my love. May all your dreams come true, and may this new chapter of your life be filled with joy, peace, and unforgettable memories.</p>
+                    <p class="wishes-closing">I love you so much, today, tomorrow, and always.<br>Happy Birthday, my favorite person. 💗</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Stage 7: Bouquet Page -->
+    <div id="bouquet-stage" class="stage">
+        <button id="bouquet-back-btn" type="button">← Kembali</button>
+        <div id="bouquet-page">
+            <h1 class="bouquet-title">This is for you 🌸</h1>
+            <div id="bouquet-img-wrap">
+                <img src="images/peony_bouquet.jpg" alt="Peony Bouquet" id="bouquet-img">
+            </div>
+            <p class="bouquet-text">Anggap aja ini buket bunga dari aku ya 💕<br>Sampai nanti aku bisa kasih yang asli secara langsung...</p>
+            <div id="voice-note-wrap">
+                <p class="voice-label">🎙️ Voice note dari aku:</p>
+                <audio controls id="voice-note">
+                    <source src="audio/voicenote.mp3" type="audio/mpeg">
+                    Browser kamu tidak mendukung audio.
+                </audio>
+                <p class="voice-hint"> Matiin dulu musicnya kalau tidak terdengar hehe</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage: Finale -->
+    <div id="finale-stage" class="stage">
+        <div id="finale-page">
+            <div id="finale-typing-area">
+                <h1 id="finale-typed"></h1>
+                <span id="finale-cursor">|</span>
+            </div>
+            <div id="finale-bottom" class="finale-hidden">
+                <p class="finale-sub">Thank you for being part of my life</p>
+                <p class="finale-sub">I hope this little gift can make your special day even more beautiful</p>
+                <p class="finale-yours">Forever yours ♥</p>
+                <button id="finale-replay-btn" type="button">↻ REPLAY FROM START</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
